@@ -35,7 +35,7 @@ public class ExchangeRequestService {
         Currency currency = entityManager.createQuery(("Select c FROM Currency c WHERE c.id = :currencyId"), Currency.class).setParameter("currencyId", currencyId).getSingleResult();
 
         //환전 후 금액 계산
-        BigDecimal exchangeRate = new BigDecimal(currency.getExchangeRate());
+        BigDecimal exchangeRate = currency.getExchangeRate();
         BigDecimal amountAfterExchange = amountInKrw.divide(exchangeRate, 2, RoundingMode.HALF_UP);
 
         //ExchangeRequest 생성, 저장

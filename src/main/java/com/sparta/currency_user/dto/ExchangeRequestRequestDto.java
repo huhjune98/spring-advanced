@@ -1,13 +1,13 @@
 package com.sparta.currency_user.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
+
+
 import java.math.BigDecimal;
 
 
