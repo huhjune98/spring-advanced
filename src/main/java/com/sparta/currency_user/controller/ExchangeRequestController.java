@@ -1,8 +1,10 @@
 package com.sparta.currency_user.controller;
 
 
+import com.sparta.currency_user.dto.ExchangeRequestRequestDto;
 import com.sparta.currency_user.entity.ExchangeRequest;
 import com.sparta.currency_user.service.ExchangeRequestService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +23,11 @@ public class ExchangeRequestController {
 
     // C:환전 요청 수행
     @PostMapping
-    public ResponseEntity<ExchangeRequest> createExchangeRequest(@RequestParam Long userId, @RequestParam Long currencyId, @RequestParam BigDecimal amountInKrw) {
-        ExchangeRequest exchangeRequest = exchangeRequestService.createExchangeRequest(userId, currencyId, amountInKrw);
+    public ResponseEntity<ExchangeRequest> createExchangeRequest(@Valid @RequestBody ExchangeRequestRequestDto requestDTO) {
+        ExchangeRequest exchangeRequest = exchangeRequestService.createExchangeRequest(
+                requestDTO.getUserId(),
+                requestDTO.getCurrencyId(),
+                requestDTO.getAmountInKrw());
         return ResponseEntity.ok(exchangeRequest);
     }
 
